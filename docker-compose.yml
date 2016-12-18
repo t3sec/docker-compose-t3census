@@ -2,18 +2,11 @@ version: '2'
 services:
   mongo:
     image: "mongo:3"
-    volumes:
-      - /graylog/data/mongo:/data/db
   elasticsearch:
     image: "elasticsearch:2"
     command: "elasticsearch -Des.cluster.name='graylog'"
-    volumes:
-      - /graylog/data/elasticsearch:/usr/share/elasticsearch/data
   graylog:
     image: graylog2/server:2.1.0-3
-    volumes:
-      - /graylog/data/journal:/usr/share/graylog/data/journal
-      - /graylog/config:/usr/share/graylog/data/config
     environment:
       GRAYLOG_PASSWORD_SECRET: t3census
       GRAYLOG_ROOT_PASSWORD_SHA2: 86b9c7bb6e9d386f34065f6d73684606009d03cd82ff81ad2a3c58d8e7386416
