@@ -8,8 +8,8 @@ services:
   graylog:
     image: graylog2/server:2.1.0-3
     environment:
-      GRAYLOG_PASSWORD_SECRET: t3census
-      GRAYLOG_ROOT_PASSWORD_SHA2: 86b9c7bb6e9d386f34065f6d73684606009d03cd82ff81ad2a3c58d8e7386416
+      GRAYLOG_PASSWORD_SECRET: t3censust3census
+      GRAYLOG_ROOT_PASSWORD_SHA2: a5564533fab3922177d894887d5d299a42532dfc9340c1b8b797a5fdda3613d1
       GRAYLOG_WEB_ENDPOINT_URI: http://127.0.0.1:9000/api
     depends_on:
       - mongo
