@@ -6,25 +6,16 @@ services:
     command: redis-server --appendonly yes
     ports:
       - "6379/udp:6379/tcp"
-    volumes:
-    - redis-data:/data
   mongo:
     image: "mongo:3.3"
     container_name: instance.t3census-mongo
-    volumes:
-      - mongo-data:/data/db
   elasticsearch:
     image: "elasticsearch:2.4"
     container_name: instance.t3census-elasticsearch
     command: "elasticsearch -Des.cluster.name='graylog'"
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
   graylog:
     image: "graylog2/server:2.1.3-1"
     container_name: instance.t3census-graylog
-    volumes:
-      - graylog-data:/usr/share/graylog/data/config
-      - graylog-journal:/usr/share/graylog/data/journal
     environment:
       GRAYLOG_PASSWORD_SECRET: t3censust3census
       GRAYLOG_ROOT_PASSWORD_SHA2: a5564533fab3922177d894887d5d299a42532dfc9340c1b8b797a5fdda3613d1
@@ -39,19 +30,3 @@ services:
       - "12202/udp:12202/udp"
       - "12203/udp:12203/udp"
       - "12204/udp:12204/udp"
-volumes:
-  elasticsearch-data:
-    external:
-      name: t3census-elasticsearch-data
-  graylog-data:
-    external:
-      name: t3census-graylog-data
-  graylog-journal:
-    external:
-      name: t3census-graylog-journal
-  mongo-data:
-    external:
-      name: t3census-mongo-data
-  redis-data:
-    external:
-      name: t3census-redis-data
